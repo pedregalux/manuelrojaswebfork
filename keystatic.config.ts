@@ -15,7 +15,7 @@ export default config({
     ? {
         // TODO: Reemplaza con tu team/project de https://keystatic.cloud
         // Ejemplo: project: 'fundacion-rojas/manuelrojas',
-        project: "devel/manuelrojasfork",
+        project: "devel/manuelrojaswebfork",
         branch: "master",
       }
     : undefined,
@@ -67,10 +67,8 @@ export default config({
           {
             label: "Galería de imágenes",
             itemLabel: (props) =>
-              props.fields.titulo.value ||
-              props.fields.alt.value ||
-              "Imagen",
-          }
+              props.fields.titulo.value || props.fields.alt.value || "Imagen",
+          },
         ),
         content: fields.markdoc({
           label: "Contenido",
@@ -127,7 +125,10 @@ export default config({
           ],
           defaultValue: "poesia",
         }),
-        orden: fields.number({ label: "Orden de visualización", defaultValue: 0 }),
+        orden: fields.number({
+          label: "Orden de visualización",
+          defaultValue: 0,
+        }),
         listado_manual: fields.array(
           fields.object({
             href: fields.text({ label: "URL del libro o página" }),
@@ -136,13 +137,15 @@ export default config({
           }),
           {
             label: "Listado manual de libros (opcional)",
-            description: "Solo para secciones que necesiten un orden o mix de URLs personalizado (ej: Novelas). Si se deja vacío se usa el listado automático por categoría.",
+            description:
+              "Solo para secciones que necesiten un orden o mix de URLs personalizado (ej: Novelas). Si se deja vacío se usa el listado automático por categoría.",
             itemLabel: (props) => props.fields.title.value || "Libro",
-          }
+          },
         ),
         introduccion: fields.markdoc({
           label: "Introducción",
-          description: "Texto introductorio que aparece en la página de la sección.",
+          description:
+            "Texto introductorio que aparece en la página de la sección.",
         }),
       },
     }),
@@ -197,7 +200,8 @@ export default config({
           fields.object({
             nombre: fields.text({
               label: "Nombre de la edición",
-              description: "Ej: Primera edición, Segunda edición, Última edición",
+              description:
+                "Ej: Primera edición, Segunda edición, Última edición",
             }),
             editorial: fields.text({ label: "Editorial" }),
             anio: fields.number({ label: "Año" }),
@@ -207,7 +211,7 @@ export default config({
           {
             label: "Ediciones",
             itemLabel: (props) => props.fields.nombre.value || "Edición",
-          }
+          },
         ),
         traducciones: fields.array(
           fields.object({
@@ -283,11 +287,13 @@ export default config({
         }),
         titulo_url: fields.url({
           label: "URL del título",
-          description: "Enlace externo al que apunta el título de la publicación (opcional).",
+          description:
+            "Enlace externo al que apunta el título de la publicación (opcional).",
         }),
         texto_destacado: fields.text({
           label: "Texto destacado",
-          description: "Texto del bloque gris al final de la publicación. Usa Markdown básico: **negrita**, *cursiva*, [enlace](url).",
+          description:
+            "Texto del bloque gris al final de la publicación. Usa Markdown básico: **negrita**, *cursiva*, [enlace](url).",
           multiline: true,
         }),
         orden: fields.number({
@@ -307,7 +313,8 @@ export default config({
         titulo: fields.slug({ name: { label: "Título" } }),
         content: fields.markdoc({
           label: "Lista de estudios",
-          description: "Lista de estudios que aparece al final de la página. Usa una lista de Markdown (- elemento) y [enlaces](url).",
+          description:
+            "Lista de estudios que aparece al final de la página. Usa una lista de Markdown (- elemento) y [enlaces](url).",
         }),
       },
     }),
