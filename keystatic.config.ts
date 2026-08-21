@@ -15,7 +15,7 @@ export default config({
     ? {
         // TODO: Reemplaza con tu team/project de https://keystatic.cloud
         // Ejemplo: project: 'fundacion-rojas/manuelrojas',
-        project: "devel/manuelrojasweb",
+        project: "devel/manuelrojasfork",
         branch: "master",
       }
     : undefined,
