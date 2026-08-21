@@ -1,6 +1,6 @@
 # AGENTS.md — manuelrojas-astro
 
-Astro 7 static site for **Fundación Manuel Rojas** (manuelrojas.cl). Netlify adapter. Keystatic CMS for content. Tailwind CSS 4.
+Astro 7 static site for **Fundación Manuel Rojas** (manuelrojas.cl). Cloudflare adapter (`@astrojs/cloudflare`, Workers + static assets). Keystatic CMS for content. Tailwind CSS 4.
 
 ## Essentials
 
@@ -13,8 +13,8 @@ Astro 7 static site for **Fundación Manuel Rojas** (manuelrojas.cl). Netlify ad
 | Command | What it does |
 |---|---|
 | `pnpm run dev` | Dev server; Keystatic admin UI at `/keystatic` |
-| `pnpm run build` | Wipes `.astro/`, `node_modules/.astro/`, and `dist/`, then builds. Emits a Netlify SSR function. |
-| `pnpm run preview` | Preview the built site locally |
+| `pnpm run build` | Wipes `.astro/`, `node_modules/.astro/`, and `dist/`, then builds. Emits a Cloudflare Worker (`dist/server/`) + static assets (`dist/client/`). |
+| `pnpm run preview` | Preview the built site locally with `wrangler dev` (Worker + assets at `http://localhost:8787`) |
 
 ## Keystatic
 
@@ -49,8 +49,8 @@ Six collections in `src/content.config.ts`:
 
 ## Build / deploy
 
-- `astro.config.mjs`: `output: 'static'`, `trailingSlash: 'ignore'`, `build.format: 'directory'`.
-- `netlify.toml`: publishes `dist/`, sets aggressive cache headers for `/media/*` and `/_astro/*`.
+- `astro.config.mjs`: `output: 'static'`, adapter `@astrojs/cloudflare` (`imageService: 'passthrough'`, `platformProxy` enabled), `trailingSlash: 'ignore'`, `build.format: 'directory'`.
+- `wrangler.json` + `public/_headers`: config de Cloudflare Workers; headers de cache agresivo para `/media/*` y `/_astro/*`. Deploy: `npx wrangler deploy` (o conectar el repo a Cloudflare con build command `pnpm run build`). La KV de sesiones (`SESSION`) se auto-provisiona al deploy.
 
 ## Gotchas
 

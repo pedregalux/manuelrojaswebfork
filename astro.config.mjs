@@ -10,12 +10,17 @@ import tailwindcss from '@tailwindcss/vite';
 
 import alpinejs from '@astrojs/alpinejs';
 
-import netlify from '@astrojs/netlify';
+import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
   site: 'https://manuelrojas.cl',
   output: 'static',
-  adapter: netlify(),
+  adapter: cloudflare({
+    imageService: 'passthrough',
+    platformProxy: {
+      enabled: true,
+    },
+  }),
   trailingSlash: 'ignore',
 
   build: {

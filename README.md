@@ -54,7 +54,7 @@ scripts/
 
 ## Despliegue
 
-El sitio está configurado para despliegue en Netlify con formato de directorio (`dist/`).
+El sitio está configurado para despliegue en Cloudflare Workers (adapter `@astrojs/cloudflare`). El build genera el Worker en `dist/server/` y los assets estáticos en `dist/client/`. Despliega con `npx wrangler deploy`, o conecta el repo a Cloudflare con build command `pnpm run build`.
 
 ## Licencia
 
